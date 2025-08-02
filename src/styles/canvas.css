@@ -1,0 +1,117 @@
+/* Canvas Styles */
+.dashboard-canvas {
+  position: relative;
+  background: linear-gradient(90deg, #f8fafc 1px, transparent 1px),
+    linear-gradient(0deg, #f8fafc 1px, transparent 1px);
+  background-size: 20px 20px;
+  min-height: 600px;
+}
+
+/* Widget Styles */
+.widget-container {
+  transition: box-shadow 0.2s ease;
+}
+
+.widget-container:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Resize Handle Styles */
+.resize-handle {
+  z-index: 10;
+  transition: background-color 0.2s ease;
+}
+
+.resize-handle:hover {
+  background-color: #1d4ed8 !important;
+}
+
+/* Theme Styles */
+.theme-light {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --border-color: #e2e8f0;
+  --accent-color: #3b82f6;
+}
+
+.theme-dark {
+  --bg-primary: #1e293b;
+  --bg-secondary: #334155;
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --border-color: #475569;
+  --accent-color: #60a5fa;
+}
+
+.theme-custom {
+  --bg-primary: #fef3c7;
+  --bg-secondary: #fde68a;
+  --text-primary: #92400e;
+  --text-secondary: #b45309;
+  --border-color: #f59e0b;
+  --accent-color: #d97706;
+}
+
+/* App Container */
+.app-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+/* Widget Panel */
+.widget-panel {
+  background-color: var(--bg-secondary);
+  border-right: 1px solid var(--border-color);
+}
+
+.widget-item {
+  transition: all 0.2s ease;
+}
+
+.widget-item:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* User List */
+.user-list {
+  background-color: var(--bg-secondary);
+  border-left: 1px solid var(--border-color);
+}
+
+/* Toolbar */
+.toolbar {
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .widget-panel {
+    width: 200px;
+  }
+
+  .user-list {
+    width: 150px;
+  }
+
+  .toolbar {
+    padding: 0 16px;
+  }
+
+  .toolbar h1 {
+    font-size: 18px;
+  }
+}
