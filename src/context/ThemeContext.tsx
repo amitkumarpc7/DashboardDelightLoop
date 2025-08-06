@@ -1,5 +1,5 @@
 // ThemeContext.tsx
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 
 type Theme = "light" | "dark" | "custom";
 
@@ -16,7 +16,16 @@ const ThemeContext = createContext<ThemeContextType>({
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [theme, setTheme] = useState<Theme>("light");
+  const [theme, setTheme] = useState<Theme>(() => {
+    // Initialize from localStorage or default to light
+    const savedTheme = localStorage.getItem("dashboard-theme") as Theme;
+    return savedTheme || "light";
+  });
+
+  // Save theme to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("dashboard-theme", theme);
+  }, [theme]);
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>

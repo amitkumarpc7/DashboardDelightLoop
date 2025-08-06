@@ -82,8 +82,8 @@ export const widgetDefinitions: Record<string, WidgetDefinition> = {
     description: "Display images or logos",
     icon: "🖼️",
     defaultConfig: {
-      src: "https://via.placeholder.com/300x200",
-      alt: "Image description",
+      src: "https://picsum.photos/300/200?random=1",
+      alt: "Sample image",
       fit: "cover",
     },
     defaultLayout: {

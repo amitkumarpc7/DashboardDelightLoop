@@ -15,8 +15,8 @@ const Toolbar: React.FC = () => {
       className="toolbar"
       style={{
         height: "60px",
-        backgroundColor: "#ffffff",
-        borderBottom: "1px solid #e2e8f0",
+        backgroundColor: "var(--bg-primary)",
+        borderBottom: "1px solid var(--border-color)",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
@@ -29,7 +29,7 @@ const Toolbar: React.FC = () => {
             margin: 0,
             fontSize: "20px",
             fontWeight: "600",
-            color: "#1e293b",
+            color: "var(--text-primary)",
           }}
         >
           Dashboard Builder
@@ -42,18 +42,20 @@ const Toolbar: React.FC = () => {
           onClick={undo}
           style={{
             padding: "8px 12px",
-            backgroundColor: "#f8fafc",
-            border: "1px solid #e2e8f0",
+            backgroundColor: "var(--bg-secondary)",
+            border: "1px solid var(--border-color)",
             borderRadius: "6px",
             cursor: "pointer",
             fontSize: "14px",
-            color: "#475569",
+            color: "var(--text-secondary)",
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = "#f1f5f9";
+            e.currentTarget.style.backgroundColor = "var(--bg-secondary)";
+            e.currentTarget.style.opacity = "0.8";
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = "#f8fafc";
+            e.currentTarget.style.backgroundColor = "var(--bg-secondary)";
+            e.currentTarget.style.opacity = "1";
           }}
         >
           ↩ Undo
@@ -62,18 +64,20 @@ const Toolbar: React.FC = () => {
           onClick={redo}
           style={{
             padding: "8px 12px",
-            backgroundColor: "#f8fafc",
-            border: "1px solid #e2e8f0",
+            backgroundColor: "var(--bg-secondary)",
+            border: "1px solid var(--border-color)",
             borderRadius: "6px",
             cursor: "pointer",
             fontSize: "14px",
-            color: "#475569",
+            color: "var(--text-secondary)",
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = "#f1f5f9";
+            e.currentTarget.style.backgroundColor = "var(--bg-secondary)";
+            e.currentTarget.style.opacity = "0.8";
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = "#f8fafc";
+            e.currentTarget.style.backgroundColor = "var(--bg-secondary)";
+            e.currentTarget.style.opacity = "1";
           }}
         >
           ↪ Redo
@@ -87,11 +91,11 @@ const Toolbar: React.FC = () => {
           }
           style={{
             padding: "8px 12px",
-            backgroundColor: "#f8fafc",
-            border: "1px solid #e2e8f0",
+            backgroundColor: "var(--bg-secondary)",
+            border: "1px solid var(--border-color)",
             borderRadius: "6px",
             fontSize: "14px",
-            color: "#475569",
+            color: "var(--text-secondary)",
             cursor: "pointer",
           }}
         >
@@ -105,7 +109,7 @@ const Toolbar: React.FC = () => {
           onClick={saveDashboard}
           style={{
             padding: "8px 16px",
-            backgroundColor: "#3b82f6",
+            backgroundColor: "var(--accent-color)",
             border: "none",
             borderRadius: "6px",
             cursor: "pointer",
@@ -114,10 +118,10 @@ const Toolbar: React.FC = () => {
             color: "#ffffff",
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = "#2563eb";
+            e.currentTarget.style.opacity = "0.8";
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = "#3b82f6";
+            e.currentTarget.style.opacity = "1";
           }}
         >
           💾 Save

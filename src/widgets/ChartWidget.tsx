@@ -1,4 +1,27 @@
 import React from "react";
+import { Line, Bar } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 interface ChartWidgetProps {
   config: {
@@ -37,6 +60,58 @@ const ChartWidget: React.FC<ChartWidgetProps> = ({
     );
   }
 
+  const renderChart = () => {
+    if (!data) {
+      return (
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100%",
+            color: "#6b7280",
+          }}
+        >
+          No data available
+        </div>
+      );
+    }
+    switch (config.chartType) {
+      case "line":
+        return (
+          <Line
+            data={data}
+            options={{
+              responsive: true,
+              plugins: {
+                legend: { position: "top" },
+                title: { display: false },
+              },
+            }}
+          />
+        );
+      case "bar":
+        return (
+          <Bar
+            data={data}
+            options={{
+              responsive: true,
+              plugins: {
+                legend: { position: "top" },
+                title: { display: false },
+              },
+            }}
+          />
+        );
+      default:
+        return (
+          <div style={{ color: "#ef4444", textAlign: "center" }}>
+            Unsupported chart type: {config.chartType}
+          </div>
+        );
+    }
+  };
+
   return (
     <div className="chart-widget" style={{ padding: "16px", height: "100%" }}>
       <div
@@ -45,48 +120,7 @@ const ChartWidget: React.FC<ChartWidgetProps> = ({
         {config.title || "Chart"}
       </div>
       <div className="chart-container" style={{ height: "calc(100% - 40px)" }}>
-        {data ? (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              height: "100%",
-              justifyContent: "center",
-              alignItems: "center",
-              backgroundColor: "#f9fafb",
-              borderRadius: "8px",
-              padding: "20px",
-            }}
-          >
-            <div style={{ fontSize: "24px", marginBottom: "8px" }}>📊</div>
-            <div
-              style={{
-                fontSize: "14px",
-                color: "#6b7280",
-                textAlign: "center",
-              }}
-            >
-              {config.chartType} Chart
-            </div>
-            <div
-              style={{ fontSize: "12px", color: "#9ca3af", marginTop: "8px" }}
-            >
-              {data.datasets?.[0]?.data?.length || 0} data points
-            </div>
-          </div>
-        ) : (
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              height: "100%",
-              color: "#6b7280",
-            }}
-          >
-            No data available
-          </div>
-        )}
+        {renderChart()}
       </div>
     </div>
   );

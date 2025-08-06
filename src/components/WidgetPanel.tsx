@@ -30,8 +30,8 @@ const WidgetPanel: React.FC = () => {
       className="widget-panel"
       style={{
         width: "250px",
-        backgroundColor: "#f8fafc",
-        borderRight: "1px solid #e2e8f0",
+        backgroundColor: "var(--bg-secondary)",
+        borderRight: "1px solid var(--border-color)",
         padding: "16px",
         overflowY: "auto",
       }}
@@ -41,7 +41,7 @@ const WidgetPanel: React.FC = () => {
           margin: "0 0 16px 0",
           fontSize: "16px",
           fontWeight: "600",
-          color: "#1e293b",
+          color: "var(--text-primary)",
         }}
       >
         Widgets
@@ -58,20 +58,20 @@ const WidgetPanel: React.FC = () => {
               display: "flex",
               alignItems: "center",
               padding: "12px",
-              backgroundColor: "#ffffff",
-              border: "1px solid #e2e8f0",
+              backgroundColor: "var(--bg-primary)",
+              border: "1px solid var(--border-color)",
               borderRadius: "8px",
               cursor: "pointer",
               transition: "all 0.2s",
               userSelect: "none",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "#f1f5f9";
-              e.currentTarget.style.borderColor = "#cbd5e1";
+              e.currentTarget.style.backgroundColor = "var(--bg-secondary)";
+              e.currentTarget.style.borderColor = "var(--accent-color)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "#ffffff";
-              e.currentTarget.style.borderColor = "#e2e8f0";
+              e.currentTarget.style.backgroundColor = "var(--bg-primary)";
+              e.currentTarget.style.borderColor = "var(--border-color)";
             }}
           >
             <span style={{ fontSize: "20px", marginRight: "12px" }}>
@@ -82,7 +82,7 @@ const WidgetPanel: React.FC = () => {
                 style={{
                   fontSize: "14px",
                   fontWeight: "500",
-                  color: "#1e293b",
+                  color: "var(--text-primary)",
                 }}
               >
                 {widget.name}
@@ -90,7 +90,7 @@ const WidgetPanel: React.FC = () => {
               <div
                 style={{
                   fontSize: "12px",
-                  color: "#64748b",
+                  color: "var(--text-secondary)",
                   marginTop: "2px",
                 }}
               >

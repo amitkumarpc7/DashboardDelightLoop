@@ -13,6 +13,10 @@ const DashboardCanvas: React.FC = () => {
     (e: React.DragEvent) => {
       e.preventDefault();
       const widgetType = e.dataTransfer.getData("widgetType");
+
+      // Only handle drops from widget panel (not from existing widgets)
+      if (!widgetType) return;
+
       const rect = e.currentTarget.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
@@ -37,6 +41,16 @@ const DashboardCanvas: React.FC = () => {
     e.preventDefault();
   }, []);
 
+  const handleDragStart = useCallback((e: React.DragEvent) => {
+    // Prevent default drag behavior for existing widgets
+    if (
+      e.target instanceof HTMLElement &&
+      e.target.closest(".widget-container")
+    ) {
+      e.preventDefault();
+    }
+  }, []);
+
   if (!activeDashboard) {
     return (
       <div
@@ -46,8 +60,8 @@ const DashboardCanvas: React.FC = () => {
           justifyContent: "center",
           height: "100%",
           fontSize: "18px",
-          color: "#64748b",
-          backgroundColor: "#f8fafc",
+          color: "var(--text-secondary)",
+          backgroundColor: "var(--bg-secondary)",
         }}
       >
         No dashboard selected
@@ -60,9 +74,10 @@ const DashboardCanvas: React.FC = () => {
       className="dashboard-canvas"
       onDrop={handleDrop}
       onDragOver={handleDragOver}
+      onDragStart={handleDragStart}
       style={{
         flex: 1,
-        backgroundColor: "#ffffff",
+        backgroundColor: "var(--bg-primary)",
         position: "relative",
         overflow: "auto",
         minHeight: "600px",
@@ -81,7 +96,7 @@ const DashboardCanvas: React.FC = () => {
             alignItems: "center",
             justifyContent: "center",
             height: "100%",
-            color: "#64748b",
+            color: "var(--text-secondary)",
             fontSize: "16px",
           }}
         >

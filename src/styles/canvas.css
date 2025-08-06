@@ -1,20 +1,25 @@
 /* Canvas Styles */
 .dashboard-canvas {
   position: relative;
-  background: linear-gradient(90deg, #f8fafc 1px, transparent 1px),
-    linear-gradient(0deg, #f8fafc 1px, transparent 1px);
+  background: linear-gradient(90deg, var(--border-color) 1px, transparent 1px),
+    linear-gradient(0deg, var(--border-color) 1px, transparent 1px);
   background-size: 20px 20px;
   min-height: 600px;
 }
 
 /* Widget Styles */
 .widget-container {
-  transition: box-shadow 0.2s ease;
+  transition: box-shadow 0.2s ease, transform 0.1s ease;
+  user-select: none;
 }
 
 .widget-container:hover {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.widget-container:active {
+  cursor: grabbing !important;
 }
 
 /* Resize Handle Styles */

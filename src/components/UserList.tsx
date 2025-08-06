@@ -9,8 +9,8 @@ const UserList: React.FC = () => {
       className="user-list"
       style={{
         width: "200px",
-        backgroundColor: "#f8fafc",
-        borderLeft: "1px solid #e2e8f0",
+        backgroundColor: "var(--bg-secondary)",
+        borderLeft: "1px solid var(--border-color)",
         padding: "16px",
       }}
     >
@@ -19,7 +19,7 @@ const UserList: React.FC = () => {
           margin: "0 0 16px 0",
           fontSize: "16px",
           fontWeight: "600",
-          color: "#1e293b",
+          color: "var(--text-primary)",
         }}
       >
         👥 Collaborators
@@ -33,8 +33,8 @@ const UserList: React.FC = () => {
               display: "flex",
               alignItems: "center",
               padding: "8px 12px",
-              backgroundColor: "#ffffff",
-              border: "1px solid #e2e8f0",
+              backgroundColor: "var(--bg-primary)",
+              border: "1px solid var(--border-color)",
               borderRadius: "6px",
             }}
           >
@@ -50,7 +50,7 @@ const UserList: React.FC = () => {
             <span
               style={{
                 fontSize: "14px",
-                color: "#475569",
+                color: "var(--text-secondary)",
                 fontWeight: "500",
               }}
             >
@@ -62,7 +62,7 @@ const UserList: React.FC = () => {
           <div
             style={{
               fontSize: "14px",
-              color: "#64748b",
+              color: "var(--text-secondary)",
               textAlign: "center",
               padding: "16px",
             }}

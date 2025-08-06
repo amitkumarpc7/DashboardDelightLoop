@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDashboardActions } from "../store/dashboardStore";
 
 interface TableWidgetProps {
   config: {
@@ -6,10 +7,40 @@ interface TableWidgetProps {
     columns: string[];
     data: string[][];
   };
+  widgetId?: string;
 }
 
-const TableWidget: React.FC<TableWidgetProps> = ({ config }) => {
+const TableWidget: React.FC<TableWidgetProps & { widgetId?: string }> = ({
+  config,
+  widgetId,
+}) => {
   const { title, columns, data } = config;
+  const { updateWidget } = useDashboardActions();
+  const [editingCell, setEditingCell] = useState<{
+    row: number;
+    col: number;
+  } | null>(null);
+  const [cellValue, setCellValue] = useState("");
+
+  const startEdit = (row: number, col: number, value: string) => {
+    setEditingCell({ row, col });
+    setCellValue(value);
+  };
+
+  const handleSave = () => {
+    if (widgetId && editingCell) {
+      const newData = data.map((rowArr, rIdx) =>
+        rowArr.map((cell, cIdx) =>
+          rIdx === editingCell.row && cIdx === editingCell.col
+            ? cellValue
+            : cell
+        )
+      );
+      updateWidget(widgetId, { config: { ...config, data: newData } });
+    }
+    setEditingCell(null);
+    setCellValue("");
+  };
 
   return (
     <div
@@ -58,9 +89,26 @@ const TableWidget: React.FC<TableWidgetProps> = ({ config }) => {
                       padding: "12px 16px",
                       fontSize: "14px",
                       color: "#374151",
+                      cursor: "pointer",
                     }}
+                    onClick={() => startEdit(rowIndex, cellIndex, cell)}
                   >
-                    {cell}
+                    {editingCell &&
+                    editingCell.row === rowIndex &&
+                    editingCell.col === cellIndex ? (
+                      <input
+                        value={cellValue}
+                        autoFocus
+                        onChange={(e) => setCellValue(e.target.value)}
+                        onBlur={handleSave}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") handleSave();
+                        }}
+                        style={{ fontSize: 14, width: "100%" }}
+                      />
+                    ) : (
+                      cell
+                    )}
                   </td>
                 ))}
               </tr>
